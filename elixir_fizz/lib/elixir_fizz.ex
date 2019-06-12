@@ -31,12 +31,6 @@ defmodule ElixirFizz do
     validate_answer({fizzbot_answer, fizzbot, question_uri})
   end
 
-  defp getting_answer() do
-    answer = IO.gets("\nWrite your answer::_ ") |> String.trim()
-    IO.puts "\nYour answer is: #{answer}"
-    answer
-  end
-
   defp show_rules(fizzbot) do
     validate_rules = fn
       true ->
@@ -62,6 +56,8 @@ defmodule ElixirFizz do
         IO.puts fizzbot_answer["message"]
         IO.puts "Try again!!"
         answer_to_fizzbot({fizzbot, question_uri})
+      "interview complete" ->
+        IO.puts " DONE "
     end
     validate_fizzbot.(fizzbot_answer["result"])
   end
