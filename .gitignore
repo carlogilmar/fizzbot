@@ -1,0 +1,8 @@
+elixir_fizz/_build/
+elixir_fizz/cover/
+elixir_fizz/deps/
+elixir_fizz/doc/
+elixir_fizz/.fetch
+elixir_fizz/erl_crash.dump
+elixir_fizz/*.ez
+elixir_fizz/elixir_fizz-*.tar
