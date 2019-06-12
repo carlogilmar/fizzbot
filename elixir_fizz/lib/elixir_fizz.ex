@@ -1,4 +1,5 @@
 defmodule ElixirFizz do
+  alias ElixirFizz.Bot
 
   @base_url "https://api.noopschallenge.com"
 
@@ -20,11 +21,12 @@ defmodule ElixirFizz do
   defp ask_to_fizzbot(fizzbot) do
     next_fizzbot = get(fizzbot["nextQuestion"])
     show_rules(next_fizzbot)
-    answer_to_fizzbot({next_fizzbot, fizzbot["nextQuestion"]})
+    answer = Bot.answer({next_fizzbot, Map.has_key?(next_fizzbot, "numbers")})
+    answer_to_fizzbot({next_fizzbot, fizzbot["nextQuestion"], answer})
   end
 
-  defp answer_to_fizzbot({fizzbot, question_uri}) do
-    answer = getting_answer()
+  defp answer_to_fizzbot({fizzbot, question_uri, answer}) do
+    IO.puts "\nSe generó la siguiente respuesta: #{answer}"
     fizzbot_answer = post(question_uri, %{"answer" => answer})
     validate_answer({fizzbot_answer, fizzbot, question_uri})
   end
