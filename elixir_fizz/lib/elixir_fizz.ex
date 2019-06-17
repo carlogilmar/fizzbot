@@ -11,9 +11,13 @@ defmodule ElixirFizz do
   #   iex(1)> ElixirFizz.start
   #
   def start() do
+    start_time = :os.system_time(:millisecond)
     "/fizzbot"
       |> start_fizzbot_for_first_time()
       |> ask_to_fizzbot()
+    end_time = :os.system_time(:millisecond)
+    duration = (end_time - start_time)/1000
+    IO.puts "Interview finalized in #{duration} seconds"
   end
 
   defp start_fizzbot_for_first_time(starter_uri), do: get(starter_uri)
